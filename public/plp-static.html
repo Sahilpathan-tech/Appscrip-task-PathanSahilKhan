@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Appscrip PLP Static – Discover Our Products</title>
+    <meta
+      name="description"
+      content="Static HTML & CSS implementation of the Appscrip product listing page design."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        color: #111;
+        background: #fff;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 60px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        letter-spacing: 0.22em;
+      }
+      .logo-mark {
+        width: 20px;
+        height: 20px;
+        border-radius: 2px;
+        background: #111;
+      }
+      .logo-text {
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+      .nav {
+        display: flex;
+        gap: 28px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+      }
+      .header-actions {
+        display: flex;
+        gap: 10px;
+      }
+      .icon-button {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .main {
+        flex: 1;
+        padding: 40px 60px 60px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .hero {
+        max-width: 640px;
+      }
+      .hero h1 {
+        font-size: 28px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 10px;
+      }
+      .hero p {
+        font-size: 15px;
+        color: #666;
+        line-height: 1.6;
+      }
+      .content {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 40px;
+      }
+      .filters {
+        border-right: 1px solid #f0f0f0;
+        padding-right: 24px;
+      }
+      .filters-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        align-items: center;
+      }
+      .filters-title {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-weight: 600;
+      }
+      .clear-button {
+        border: none;
+        background: transparent;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #999;
+        cursor: pointer;
+      }
+      .filter-group {
+        margin-bottom: 24px;
+      }
+      .filter-heading {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 8px;
+      }
+      .filter-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+      }
+      .filter-hint {
+        margin-top: 6px;
+        font-size: 12px;
+        color: #a0a0a0;
+      }
+      .grid-section {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .grid-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .grid-title {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .grid-subtitle {
+        font-size: 13px;
+        color: #777;
+        margin-top: 4px;
+      }
+      .sort-select {
+        font-size: 13px;
+        padding: 4px 12px;
+        border-radius: 16px;
+        border: 1px solid #ddd;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 24px;
+      }
+      .card {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .card-image {
+        width: 100%;
+        padding-bottom: 110%;
+        border: 1px solid #f0f0f0;
+        background: #fafafa;
+      }
+      .card-title {
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      .card-category {
+        font-size: 12px;
+        color: #999;
+      }
+      .card-price {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .footer {
+        border-top: 1px solid #e5e5e5;
+        padding: 32px 60px 40px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 32px;
+        background: #111;
+        color: #f5f5f5;
+      }
+      .footer-heading {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        margin-bottom: 8px;
+      }
+      .footer-text,
+      .footer-list {
+        font-size: 13px;
+        color: #d0d0d0;
+      }
+      .footer-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      @media (max-width: 1024px) {
+        .main {
+          padding: 32px 32px 40px;
+        }
+        .content {
+          grid-template-columns: 220px 1fr;
+          gap: 24px;
+        }
+        .grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 768px) {
+        .header {
+          padding: 16px 24px;
+        }
+        .nav {
+          display: none;
+        }
+        .main {
+          padding: 28px 24px 32px;
+        }
+        .content {
+          grid-template-columns: 1fr;
+        }
+        .filters {
+          border-right: none;
+          border-bottom: 1px solid #f0f0f0;
+          padding-right: 0;
+          padding-bottom: 24px;
+        }
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .footer {
+          grid-template-columns: 1fr;
+          padding: 28px 24px 36px;
+        }
+      }
+      @media (max-width: 480px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="brand">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span class="logo-text">LOGO</span>
+        </div>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#">Home</a>
+          <a href="#">Shop</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <button class="icon-button" aria-label="Search products">🔍</button>
+          <button class="icon-button" aria-label="View wishlist">♡</button>
+          <button class="icon-button" aria-label="View cart">🛒</button>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="hero">
+          <h1>Discover our products</h1>
+          <p>
+            A clean, responsive product listing page built with semantic HTML and
+            CSS only, inspired by the Appscrip PLP design.
+          </p>
+        </section>
+
+        <section class="content">
+          <aside class="filters" aria-label="Product filters">
+            <div class="filters-header">
+              <h2 class="filters-title">Filter</h2>
+              <button class="clear-button" type="button">Clear all</button>
+            </div>
+            <div class="filter-group">
+              <h3 class="filter-heading">Category</h3>
+              <ul class="filter-list">
+                <li>
+                  <label class="checkbox-label">
+                    <input type="checkbox" /> <span>Accessories</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="checkbox-label">
+                    <input type="checkbox" /> <span>Bags</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="checkbox-label">
+                    <input type="checkbox" /> <span>Clothing</span>
+                  </label>
+                </li>
+              </ul>
+              <p class="filter-hint">
+                Categories are illustrative; hook them to real filters in your app.
+              </p>
+            </div>
+          </aside>
+
+          <section class="grid-section" aria-label="Product listing">
+            <div class="grid-header">
+              <div>
+                <h2 class="grid-title">All products</h2>
+                <p class="grid-subtitle">Static grid for layout reference</p>
+              </div>
+              <div>
+                <select class="sort-select" aria-label="Sort products by">
+                  <option>Featured</option>
+                  <option>Price: Low to High</option>
+                  <option>Price: High to Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid">
+              <article class="card">
+                <div
+                  class="card-image"
+                  role="img"
+                  aria-label="Sample bag product image"
+                ></div>
+                <h3 class="card-title">Sample leather bag</h3>
+                <p class="card-category">Accessories</p>
+                <p class="card-price">$49.00</p>
+              </article>
+              <article class="card">
+                <div
+                  class="card-image"
+                  role="img"
+                  aria-label="Sample toy product image"
+                ></div>
+                <h3 class="card-title">Playful dinosaur toy</h3>
+                <p class="card-category">Kids</p>
+                <p class="card-price">$25.00</p>
+              </article>
+              <article class="card">
+                <div
+                  class="card-image"
+                  role="img"
+                  aria-label="Sample shoe product image"
+                ></div>
+                <h3 class="card-title">Minimal sneakers</h3>
+                <p class="card-category">Footwear</p>
+                <p class="card-price">$69.00</p>
+              </article>
+              <article class="card">
+                <div
+                  class="card-image"
+                  role="img"
+                  aria-label="Sample home item image"
+                ></div>
+                <h3 class="card-title">Soft cotton towel</h3>
+                <p class="card-category">Home</p>
+                <p class="card-price">$19.00</p>
+              </article>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div>
+          <h2 class="footer-heading">About</h2>
+          <p class="footer-text">
+            Static product listing page created as part of the Appscrip
+            evaluation task.
+          </p>
+        </div>
+        <div>
+          <h2 class="footer-heading">Contact</h2>
+          <ul class="footer-list">
+            <li>Email: hello@example.com</li>
+            <li>Phone: +1 (555) 010-0000</li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-heading">Follow</h2>
+          <ul class="footer-list">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
